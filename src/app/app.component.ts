@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-root',//tag que esta no index, que é onde vai incluir os componentes
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
-})
+})//decorator do angular injeta esses componentes na classe criada
 export class AppComponent {
   title = 'app';
 }
