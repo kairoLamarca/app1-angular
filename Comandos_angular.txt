@@ -1,0 +1,1 @@
+ng generate component painel -- já cria toda a estrutura do component
