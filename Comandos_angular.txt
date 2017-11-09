@@ -1,1 +1,2 @@
 ng generate component painel -- já cria toda a estrutura do component
+ng g c tentativas --spec=false --Generate resumido e o spec=false para não criar o arquivo spec
