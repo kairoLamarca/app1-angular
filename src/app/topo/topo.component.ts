@@ -15,4 +15,6 @@ import { Component } from '@angular/core';
     //         '`]//este estilo sera usado somente no component referenciado junto
     styleUrls: ['./topo.component.css']
 })
-export class TopoComponent { }
+export class TopoComponent { 
+    public titulo: string = 'Aprendendo Inglês';
+}
