@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })//decorator do angular injeta esses componentes na classe criada
 export class AppComponent {
-  title = 'app';
+
+  public jogoEmAndamento: boolean = true;
+  public tipoEncerramento: string;
+
+  public encerrarJogo(tipo: string): void{
+    this.jogoEmAndamento = false;
+    this.tipoEncerramento = tipo;
+  }
 }

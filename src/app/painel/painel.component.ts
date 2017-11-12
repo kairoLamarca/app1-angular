@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, OnDestroy } from '@angular/core';
 
 import { Frase } from '../shared/frase.model';
 import { FRASES } from './frases-mock';
@@ -9,7 +9,7 @@ import { FRASES } from './frases-mock';
   styleUrls: ['./painel.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class PainelComponent implements OnInit {
+export class PainelComponent implements OnInit, OnDestroy {
 
   public frases: Frase[] = FRASES
   public instrucao: string = 'Traduza a frase:';
@@ -22,6 +22,8 @@ export class PainelComponent implements OnInit {
 
   public tentativas: number = 3;
 
+  @Output() public encerrarJogo: EventEmitter<string> = new EventEmitter();//Output faz ele ser exposto para os componenetes pais
+
   constructor() {
     this.atualizaRodada();
     //this.rodadaFrase = this.frases[this.rodada];
@@ -31,6 +33,10 @@ export class PainelComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy(){
+    console.log('Componente painel foi destruido');
+  }
+
   public atualizaResposta(resposta: Event): void {
     this.resposta = (<HTMLInputElement>resposta.target).value;
   }
@@ -38,12 +44,16 @@ export class PainelComponent implements OnInit {
   public verificarResposta(): void {
     //console.log(this.tentativas);
     if (this.rodadaFrase.frasePtBr == this.resposta) {
-      alert('A tradução está correta');
 
       //trocar pergunta da rodada
       this.rodada++;
 
       this.progresso = this.progresso + (100 / this.frases.length);
+
+      //
+      if(this.rodada === 4){
+        this.encerrarJogo.emit('vitoria');
+      }
 
       //console.log(this.progresso);
 
@@ -61,7 +71,7 @@ export class PainelComponent implements OnInit {
 
       //console.log(this.tentativas);
       if (this.tentativas === -1) {
-        alert('Você perdeu todas as tentativas');
+        this.encerrarJogo.emit('derrota');
       }
     }
     //console.log(this.tentativas);
