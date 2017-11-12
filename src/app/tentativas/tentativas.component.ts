@@ -22,7 +22,7 @@ export class TentativasComponent implements OnInit, OnChanges {
   ]
 
   constructor() {
-    console.log(this.coracoes);
+    //console.log(this.coracoes);
   }
 
   ngOnChanges() {//é executado no momento de input dos dados, executado antes do OnInit
@@ -30,7 +30,7 @@ export class TentativasComponent implements OnInit, OnChanges {
       let indice = this.coracoes.length - this.tentativas;
       this.coracoes[indice -1].cheio = false;
     }
-    console.log('tentativas recebidas do painel', this.tentativas);
+    //console.log('tentativas recebidas do painel', this.tentativas);
   }
 
   ngOnInit() {

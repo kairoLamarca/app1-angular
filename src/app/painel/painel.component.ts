@@ -34,7 +34,7 @@ export class PainelComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    console.log('Componente painel foi destruido');
+    //console.log('Componente painel foi destruido');
   }
 
   public atualizaResposta(resposta: Event): void {
