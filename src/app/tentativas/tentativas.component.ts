@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewEncapsulation, Input } from '@angular/core';
 
 import { Coracao } from '../shared/coracao.model'
 
@@ -8,22 +8,33 @@ import { Coracao } from '../shared/coracao.model'
   styleUrls: ['./tentativas.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class TentativasComponent implements OnInit {
+export class TentativasComponent implements OnInit, OnChanges {
 
-  public coracaoVazio: string = '/assets/coracao_vazio.png';
-  public coracaoCheio: string = '/assets/coracao_cheio.png';
+  // public coracaoVazio: string = '/assets/coracao_vazio.png';
+  // public coracaoCheio: string = '/assets/coracao_cheio.png';
+
+  @Input() public tentativas: number;
 
   public coracoes: Coracao[] = [
-    new Coracao(false),
+    new Coracao(true),
     new Coracao(true),
     new Coracao(true)
   ]
 
-  constructor() { 
+  constructor() {
     console.log(this.coracoes);
   }
 
+  ngOnChanges() {//é executado no momento de input dos dados, executado antes do OnInit
+    if (this.tentativas !== this.coracoes.length) {
+      let indice = this.coracoes.length - this.tentativas;
+      this.coracoes[indice -1].cheio = false;
+    }
+    console.log('tentativas recebidas do painel', this.tentativas);
+  }
+
   ngOnInit() {
+
   }
 
 }
