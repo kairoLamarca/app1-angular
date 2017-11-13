@@ -2,3 +2,6 @@ ng generate component painel -- já cria toda a estrutura do component
 ng g c tentativas --spec=false --Generate resumido e o spec=false para não criar o arquivo spec
 
 npm install bootstrap@4.0.0-beta.2
+
+ng bulid --dev //Gera um build de desenvolvimento
+ng bulid --prod //Gera um build de produção
